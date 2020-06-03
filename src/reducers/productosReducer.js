@@ -8,7 +8,9 @@ import {
     OBTENER_PRODUCTO_ELIMINAR,
     PRODUCTO_ELIMINAR_EXITO,
     PRODUCTO_ELIMINAR_ERROR,
-    OBTENER_PRODUCTO_EDITAR
+    OBTENER_PRODUCTO_EDITAR,
+    PRODUCTO_EDITAR_EXITO,
+    PRODUCTO_EDITAR_ERROR
 }  from '../types';
 
 //cada reducer tiene su propio state
@@ -41,6 +43,7 @@ export default function(state = initialState, action) {
         case AGREGAR_PRODUCTO_ERROR:
         case DESCARGA_PRODUCTOS_ERROR:
         case PRODUCTO_ELIMINAR_ERROR:
+        case PRODUCTO_EDITAR_ERROR:
             return{
                 ...state,
                 loading: false,
@@ -74,6 +77,18 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 productoeditar: action.payload
+            }
+
+        case PRODUCTO_EDITAR_EXITO:
+            return {
+                ...state,
+                productoeditar: null,
+                //en este caso es una edicion , tenemos que pasarle el obj completo y comparar uno por uno
+                //cuando encuentre el id que sea igual, reemplazar ese objeto, pero los demas retornan igual
+                productos: state.productos.map(  producto =>
+                    producto.id === action.payload.id ? producto = action.payload : producto
+                )
+
             }
         default:
             return state;

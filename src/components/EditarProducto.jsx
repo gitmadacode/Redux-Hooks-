@@ -1,19 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 //useSelector Para acceder al state, useDispatch Para ejecutar las acciones
 import { useDispatch, useSelector } from 'react-redux';
 import { editarProductoAction } from '../actions/productoActions';
+import { useHistory } from 'react-router-dom';
 
 const EditarProducto = () => {
 
+    const history = useHistory();
+    const dispatch =  useDispatch();
+
+
+    //Nuevo state de producto
+    const [producto, guardarProducto] = useState({
+        nombre: '',
+        precio: ''
+    })
+
     //Producto a editar
-    const producto = useSelector(state => state.productos.productoeditar);
-    if(!producto) return null; 
+    const productoeditar = useSelector(state => state.productos.productoeditar);
+    
+
+    //Llenar el state automaticamente (no puedes usar useEffect si tienes un return arriba)
+    useEffect(() => {
+        guardarProducto(productoeditar);
+    }, [productoeditar])
+
+    //Leer los datos del formulario
+    const onChangeFormulario = e => {
+        guardarProducto({
+            ...producto,
+            [e.target.name] : e.target.value
+        })
+    }
+
     //Destructuring
-    const { nombre,precio,id } = producto;
+    const { nombre,precio } = producto;
 
     const submitEditarProducto = e => {
         e.preventDefault();
-        editarProductoAction();
+        dispatch( editarProductoAction(producto) ); 
+
+        history.push('/');
     }
     
     return ( 
@@ -36,6 +63,7 @@ const EditarProducto = () => {
                                 placeholder="nombre producto"
                                 name="nombre"
                                 value={nombre}
+                                onChange={onChangeFormulario}
                              />
                         </div>
 
@@ -47,6 +75,7 @@ const EditarProducto = () => {
                             placeholder="precio producto"
                             name="precio"
                             value={precio}
+                            onChange={onChangeFormulario}
                          />
                     </div>
                     <button
