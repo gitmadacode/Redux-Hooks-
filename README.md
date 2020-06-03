@@ -1,5 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+![Alt Text](https://media1.tenor.com/images/1d974f8fdfc6b27b2fe196a66b1c9728/tenor.gif)
+
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -11,6 +14,10 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
+
+### `json-server db.json --port 4000`
+
+To run Json Server Fake API
 
 ### `yarn test`
 
