@@ -7,23 +7,26 @@ import EditarProducto from "./components/EditarProducto";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 //Redux
-import { Provider } from 'react-redux';
-import store from './store';
-
+import { Provider } from "react-redux";
+import store from "./store";
 
 //Todo lo de fuera del switch se va a utilizar en todas las paginas, por ejemplo el header en todas
 function App() {
   return (
     <Router>
       <Provider store={store}>
-      <Header />
-      <div className="container mt-5">
-      <Switch>
-        <Route exact path="/" component={Productos}/>
-        <Route exact path="/productos/nuevo" component={NuevoProducto}/> 
-        <Route exact path="/productos/editar/:id" component={EditarProducto}/> 
-      </Switch>
-      </div>
+        <Header />
+        <div className="container mt-5">
+          <Switch>
+            <Route exact path="/" component={Productos} />
+            <Route exact path="/productos/nuevo" component={NuevoProducto} />
+            <Route
+              exact
+              path="/productos/editar/:id"
+              component={EditarProducto}
+            />
+          </Switch>
+        </div>
       </Provider>
     </Router>
   );
