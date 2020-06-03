@@ -1,7 +1,21 @@
 import React from 'react';
-
+//useSelector Para acceder al state, useDispatch Para ejecutar las acciones
+import { useDispatch, useSelector } from 'react-redux';
+import { editarProductoAction } from '../actions/productoActions';
 
 const EditarProducto = () => {
+
+    //Producto a editar
+    const producto = useSelector(state => state.productos.productoeditar);
+    if(!producto) return null; 
+    //Destructuring
+    const { nombre,precio,id } = producto;
+
+    const submitEditarProducto = e => {
+        e.preventDefault();
+        editarProductoAction();
+    }
+    
     return ( 
         <div className="row justify-content-center">
         <div className="col-md-8">
@@ -11,7 +25,9 @@ const EditarProducto = () => {
                         Editar producto
                     </h2>
 
-                    <form>
+                    <form
+                        onSubmit={submitEditarProducto}
+                    >
                         <div className="form-group">
                             <label>Nombre Producto</label>
                             <input
@@ -19,6 +35,7 @@ const EditarProducto = () => {
                                 className="form-control"
                                 placeholder="nombre producto"
                                 name="nombre"
+                                value={nombre}
                              />
                         </div>
 
@@ -29,6 +46,7 @@ const EditarProducto = () => {
                             className="form-control"
                             placeholder="precio producto"
                             name="precio"
+                            value={precio}
                          />
                     </div>
                     <button

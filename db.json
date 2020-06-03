@@ -1,24 +1,9 @@
 {
   "productos": [
     {
-      "id": 1,
-      "nombre": "Jugo de Zanahoria",
-      "precio": "31111"
-    },
-    {
       "id": 2,
       "nombre": "Jugo de Naranja",
       "precio": "1"
-    },
-    {
-      "nombre": "Jugo de Naranja",
-      "precio": "300",
-      "id": 3
-    },
-    {
-      "nombre": "Rib Eye 800g",
-      "precio": "200",
-      "id": 4
     },
     {
       "nombre": "Jugo de Fresa",
@@ -26,19 +11,9 @@
       "id": 5
     },
     {
-      "nombre": "poto",
-      "precio": 800,
+      "nombre": "fresas",
+      "precio": 5232,
       "id": 6
-    },
-    {
-      "nombre": "fdsds",
-      "precio": 220,
-      "id": 7
-    },
-    {
-      "nombre": "papas",
-      "precio": 12,
-      "id": 8
     }
   ]
 }
